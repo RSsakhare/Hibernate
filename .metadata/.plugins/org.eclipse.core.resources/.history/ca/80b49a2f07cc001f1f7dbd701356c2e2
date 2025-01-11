@@ -1,0 +1,49 @@
+package com.demo;
+
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+
+@DiscriminatorValue(value = "temp")
+public class TempEmp extends Employee 
+{
+	@Column(name="workdays",length = 5)
+	int workdays;
+	@Column(name = "cname",length = 7)
+	String cname;
+	public TempEmp() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	
+	public TempEmp(int eid,String ename,int esal,int workdays, String cname) {
+		super(eid,ename,esal);
+		this.workdays = workdays;
+		this.cname = cname;
+	}
+
+
+
+
+	public int getWorkdays() {
+		return workdays;
+	}
+	public void setWorkdays(int workdays) {
+		this.workdays = workdays;
+	}
+	public String getCname() {
+		return cname;
+	}
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+	@Override
+	public String toString() {
+		return "TempEmp [workdays=" + workdays + ", cname=" + cname + "]";
+	}
+	
+}

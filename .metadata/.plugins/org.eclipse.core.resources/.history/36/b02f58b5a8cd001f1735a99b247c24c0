@@ -1,0 +1,17 @@
+package com.model;
+
+public class Batsman extends Player {
+	
+	private int numRuns;
+
+	public Batsman() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Batsman(int playerId, String playerName, int numMatches, Address resAddr,int numRuns) {
+		super(playerId, playerName, numMatches, resAddr);
+	}
+	
+	
+}

@@ -1,0 +1,37 @@
+package com.controller;
+
+import java.util.Date;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.hibernate.utility.HibernateUtil;
+import com.model.Address;
+import com.model.Customer;
+
+public class SaveRecord {
+    public static void main(String[] args) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Address address1 = new Address();
+        address1.setStreet("Street 1");
+        address1.setCity("City 1");
+        address1.setCountry("Country 1");
+        address1.setPinCode("123456");
+
+        Customer customer1 = new Customer();
+        customer1.setCustName("Customer 1");
+        customer1.setContactNo("1234567890");
+        customer1.setBirthDate(new Date(21/05/1987));
+        customer1.setResAddr(address1);
+
+        // Add more customers similarly
+
+        session.save(customer1);
+        // Save other customers
+
+        transaction.commit();
+        session.close();
+    }
+}

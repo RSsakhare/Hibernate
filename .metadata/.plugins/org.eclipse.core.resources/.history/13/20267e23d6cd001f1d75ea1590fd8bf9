@@ -1,0 +1,33 @@
+package com.controller;
+
+import java.util.Scanner;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import com.hibernate.utility.HibernateUtil;
+import com.model.Gift;
+
+public class GetGiftByCategory {
+
+	public static void main(String[] args) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		 System.out.println("Enter category to search:");
+		 Scanner scanner = new Scanner(System.in);
+	        @SuppressWarnings("unused")
+			String cat = scanner.nextLine();
+	        String hql="from Product where category=:cat";
+		    Query q =session.createQuery(hql);
+		    q.setParameter("cat","category"); // Replace number with the actual code
+		    Object o = q.uniqueResult();
+		    Gift e = (Gift)o;
+		    if (e != null) {
+		        System.out.println(e.getGiftId()+" "+e.getCategory()+" "+e.getGiftName()+" "+e.getPrice());
+		    } else {
+		        System.out.println("Product not found");
+		    }	
+		    scanner.close();
+		    session.close();
+	}
+	
+}

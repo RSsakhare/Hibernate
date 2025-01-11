@@ -1,0 +1,40 @@
+package com.controller;
+
+import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
+
+import com.hibernate.utility.HibernateUtil;
+import com.model.Customer1;
+
+public class Query1 {
+
+	public static void main(String[] args) {
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		//select * from Employee
+		 Criteria ct = session.createCriteria(Customer1.class);
+		 Criterion cr = Restrictions.eq("city", "pune");
+		 ct.add(cr);
+		 
+		 Object o = ct.uniqueResult();
+		 Customer1 c = (Customer1)o;
+		 
+		 System.out.println("Customer1 FirstName:"+c.getFirstName());
+		 System.out.println("Customer1 LastName:"+c.getLastName());
+		 System.out.println("Customer1 AnnualSal:"+c.getAnnualSal());
+		 
+		
+		session.close();
+
+	}
+
+}

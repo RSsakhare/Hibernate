@@ -1,0 +1,62 @@
+package com.controller;
+
+
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import com.model.Department;
+import com.model.Employee;
+
+import java.util.ArrayList;
+import java.util.Date;
+
+public class MainApp {
+   
+	public static void main(String[] args) {
+        // Configure Hibernate and build session factory
+        Configuration cfg = new Configuration().configure();
+        SessionFactory sessionFactory = cfg.buildSessionFactory();
+        
+        // Open a new session
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        
+        // Create a Department
+        Department d1 = new Department();
+        d1.setDepartmentName("IT Department");
+        session.save(d1);
+        
+        Department d2 = new Department();
+        d1.setDepartmentName("Sales");
+        session.save(d2);
+        
+        
+        // Create Employees
+        Employee emp1 = new Employee(129,"John","Joy",new Date("12/04/1980"),"5221");
+        Employee emp2 = new Employee(234,"Sam","Almy",new Date("10/09/1988"),"2346");
+        
+        emp1.setDepartment(d1);
+        emp1.setDepartment(d1);
+        
+        session.save(emp1);
+        session.save(emp2);
+        
+        // Add Employees to Department
+        department.setEmployees(new ArrayList<>());
+        department.getEmployees().add(emp1);
+        department.getEmployees().add(emp2);
+        
+        // Save Department (employees will be saved automatically)
+       
+        
+        // Commit transaction
+        transaction.commit();
+        session.close();
+        sessionFactory.close();
+        
+        System.out.println("Department and employees saved successfully!");
+    }
+}

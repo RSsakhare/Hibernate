@@ -1,0 +1,24 @@
+package com.controller;
+
+
+
+import java.util.Date;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+
+import com.model.Employee;
+import com.model.EmployeeDetails;
+
+public class MainApp {
+
+	public static void main(String[] args) {
+		
+		
+		
+	}
+
+}

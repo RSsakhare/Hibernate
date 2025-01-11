@@ -1,0 +1,28 @@
+package com.model;
+
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "EmpDetails")
+
+public class EmployeeDetails {
+    @Id
+    @Column(name="eid")
+    private Long employeeId;
+    @Column(name="street", length=20)
+    private String street;
+    @Column(name="city", length=20)
+    private String city;
+    @Column(name="state", length=20)
+    private String state;
+    @Column(name="country", length=20)
+    private String country;
+
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private Employee employee;
+
+   
+}
+

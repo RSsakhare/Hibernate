@@ -1,0 +1,26 @@
+package com.model;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+@Entity
+public class Meeting {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int meetingId;
+    private String agenda;
+    private Date meetingDate;
+    private String meetingTime;
+
+    @ManyToMany(mappedBy = "meetings")
+    private Set<Employee> employees = new HashSet<>();
+
+    // Getters and Setters
+}

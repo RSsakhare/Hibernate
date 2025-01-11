@@ -1,0 +1,19 @@
+package com.model;
+
+public class Bowler extends Player {
+
+	private int numWickets;
+
+	
+	public Bowler() {
+		super();
+	}
+
+	public Bowler(int playerId, String playerName, int numMatches, Address resAddr,int numWickets) {
+		super(playerId, playerName, numMatches, resAddr);
+		this.numWickets = numWickets;
+
+	}
+	
+	
+}

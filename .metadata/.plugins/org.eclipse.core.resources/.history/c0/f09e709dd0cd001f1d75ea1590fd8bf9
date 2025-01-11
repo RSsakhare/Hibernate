@@ -1,0 +1,29 @@
+package com.controller;
+
+import java.util.List;
+
+import org.hibernate.Session;
+
+import com.hibernate.utility.HibernateUtil;
+import com.model.Gift;
+
+public class GetAllRecords {
+	
+	public static void main(String[] args) {
+	Session session = HibernateUtil.getSessionFactory().openSession();
+	//String hql = "from Gift";
+	
+	//Query q = session.createQuery(hql);
+	
+	//List <String> lst = q.list();
+	@SuppressWarnings("unchecked")
+	List<Gift> gifts = session.createQuery("from Gift").list();
+	System.out.println("Gifts name are :");
+	for(Gift str:gifts)
+	{
+		System.out.println(str);
+	}
+	
+	session.close();
+	}
+}

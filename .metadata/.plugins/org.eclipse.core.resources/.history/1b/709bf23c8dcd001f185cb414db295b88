@@ -1,0 +1,18 @@
+package com.controller;
+
+import org.hibernate.Session;
+
+import com.hibernate.utility.HibernateUtil;
+import com.model.Product;
+
+public class GetRecord {
+
+	public static void main(String[] args) {
+	      Session s = HibernateUtil.getSessionFactory().openSession();
+	      Product p1 = (Product) s.get(Product.class, 100); // Replace number with the actual code
+	      System.out.println(p1.getName());
+	      s.close();
+	}
+	
+
+}

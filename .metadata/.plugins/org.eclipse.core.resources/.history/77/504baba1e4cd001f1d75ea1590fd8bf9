@@ -1,0 +1,28 @@
+package com.controller;
+
+import java.util.List;
+import java.util.Scanner;
+
+import org.hibernate.Session;
+
+import com.hibernate.utility.HibernateUtil;
+import com.model.Gift;
+
+public class GetRecordBySelect {
+
+	public static void main(String[] args) {
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+       
+		@SuppressWarnings("unchecked")
+		List<Gift> gifts = session.createQuery("select giftName, price from Gift").list();
+		for(Gift gift: gifts )
+		{
+			System.out.println("Name: " + gift.getGiftName() + " Price: " + gift.getPrice());
+		}
+
+		session.close();
+
+	}
+
+}

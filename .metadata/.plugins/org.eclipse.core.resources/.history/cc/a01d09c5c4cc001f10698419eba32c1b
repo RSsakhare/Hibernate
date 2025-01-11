@@ -1,0 +1,24 @@
+package com.query;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+public class Query1 {
+
+	public static void main(String[] args) {
+
+		Configuration c = new Configuration();
+		SessionFactory sf = c.configure().buildSessionFactory();
+		Session s = sf.openSession();
+		
+		String hql="from Emp108 where eid=102";
+		Query q =s.createQuery(hql);
+		Object o = q.uniqueResult();
+		Employee e = (Employee)o;
+		
+	}
+
+}

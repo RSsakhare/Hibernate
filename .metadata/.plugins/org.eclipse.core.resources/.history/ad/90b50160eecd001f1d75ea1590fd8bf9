@@ -1,0 +1,33 @@
+package com.controller;
+
+import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import com.hibernate.utility.HibernateUtil;
+import com.model.Customer;
+
+public class Query1 {
+
+	public static void main(String[] args) {
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		CriteriaBuilder cb = ((Customer) session).getCriteriaBuilder();
+		CriteriaQuery<Customer> cq = cb.createQuery(Customer.class);
+		Root<Customer> root = cq.from(Customer.class);
+		cq.select(root).where(cb.between(root.get("annualSal"), 250000f, 750000f));
+
+		Query<Customer> query = session.createQuery(cq);
+		List<Customer> customers = query.getResultList();
+		customers.forEach(customer -> System.out.println(customer.getFirstName() + " " + customer.getLastName() + " " + customer.getAnnualSal()));
+
+		session.close();
+
+	}
+
+}

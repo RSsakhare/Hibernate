@@ -1,0 +1,9 @@
+package com.model;
+
+public class Gift {
+
+	private int giftId; 
+	private String giftName; 
+	private String category; 
+	private float price;
+}

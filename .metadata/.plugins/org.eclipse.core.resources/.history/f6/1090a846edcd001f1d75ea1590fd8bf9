@@ -1,0 +1,41 @@
+package com.controller;
+
+import org.hibernate.Session;
+
+import com.hibernate.utility.HibernateUtil;
+import com.model.Customer;
+
+public class MainApp {
+
+	public static void main(String[] args) {
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        
+		Customer customer1 = new Customer(1, "John", "Doe", 500000.0f, "Pune");
+		Customer customer2 = new Customer(2, "Jane", "Smith", 300000.0f, "Mumbai");
+		Customer customer3 = new Customer(3, "David", "Lee", 700000.0f, "Delhi");
+		Customer customer4 = new Customer(4, "Robert", "Jones", 200000.0f, "Pune");
+		Customer customer5 = new Customer(5, "Sarah", "Williams", 800000.0f, "Bangalore");
+		Customer customer6 = new Customer(6, "Richard", "Davis", 450000.0f, "Pune");
+		Customer customer7 = new Customer(7, "Michael", "Brown", 150000.0f, "Chennai");
+		Customer customer8 = new Customer(8, "Christopher", "Johnson", 600000.0f, "Kolkata");
+		Customer customer9 = new Customer(9, "Daniel", "Anderson", 250000.0f, "Pune");
+		Customer customer10 = new Customer(10, "Paul", "Thomas", 900000.0f, "Hyderabad");
+		
+		session.save(customer1);
+        session.save(customer2);
+        session.save(customer3);
+        session.save(customer4);
+        session.save(customer5);
+        session.save(customer6);
+        session.save(customer7);
+        session.save(customer8);
+        session.save(customer9);
+        session.save(customer10);
+
+        session.getTransaction().commit();
+        session.close();
+	}
+
+}

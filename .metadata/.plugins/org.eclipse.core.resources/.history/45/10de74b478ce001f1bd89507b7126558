@@ -1,0 +1,18 @@
+package com.model;
+
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+public class Director {
+    @Id
+    private int directorId;
+    @Column(name = "directorName",length = 10)
+    private String directorName;
+
+    @OneToMany(mappedBy = "dir", cascade = CascadeType.ALL)
+    private Set<Movie> movies;
+
+    // Getters and Setters
+}
+

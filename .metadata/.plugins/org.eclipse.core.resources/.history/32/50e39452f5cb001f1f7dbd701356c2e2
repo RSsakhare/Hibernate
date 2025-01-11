@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.demo.Employee" table="emp102">
+        <id name="emp_id" column="emp_id" length="3">
+            <generator class="assigned"></generator>
+        </id>
+        <property name="name" not-null="true" column="ename" length="15"></property>
+        <component name="addr" class="Address">
+        	<property name="houseNo" length="3" column="hNo"></property>
+        	<property name="house" length="10" column="hName"></property>
+        	<property name="street" length="3" column="Street"></property>
+        	<property name="city" length="3" column="city"></property>
+        </component>
+    </class>
+</hibernate-mapping>

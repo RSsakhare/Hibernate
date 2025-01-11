@@ -1,0 +1,56 @@
+package com.controller;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import com.hibernate.utility.HibernateUtil;
+import com.model.Employee;
+import com.model.Meeting;
+
+import java.util.Date;
+
+public class MainApp {
+    public static void main(String[] args) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+
+        Meeting meeting1 = new Meeting();
+        meeting1.setMeetingId(101);
+        meeting1.setAgenda("Project Kickoff");
+        meeting1.setMeetingDate(new Date());
+        meeting1.setMeetingTime("10:00 AM");
+
+        Meeting meeting2 = new Meeting();
+        meeting2.setMeetingId(102);
+        meeting2.setAgenda("Sprint Planning");
+        meeting2.setMeetingDate(new Date());
+        meeting2.setMeetingTime("2:00 PM");
+
+        Employee emp1 = new Employee();
+        emp1.setEmpId(1);
+        emp1.setEmpName("John Doe");
+        emp1.setJdate(new Date());
+        emp1.getMeetings().add(meeting1);
+        emp1.getMeetings().add(meeting2);
+
+        Employee emp2 = new Employee();
+        emp2.setEmpId(2);
+        emp2.setEmpName("Jane Smith");
+        emp2.setJdate(new Date());
+        emp2.getMeetings().add(meeting1);
+        emp2.getMeetings().add(meeting2);
+
+        Employee emp3 = new Employee();
+        emp3.setEmpId(3);
+        emp3.setEmpName("Alice Johnson");
+        emp3.setJdate(new Date());
+        emp3.getMeetings().add(meeting1);
+        emp3.getMeetings().add(meeting2);
+
+        session.save(emp1);
+        session.save(emp2);
+        session.save(emp3);
+
+        tx.commit();
+        session.close();
+    }
+}

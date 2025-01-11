@@ -1,0 +1,10 @@
+package com.query;
+
+public class AggregationQuery {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

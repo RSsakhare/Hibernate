@@ -1,0 +1,10 @@
+package com.query;
+
+public class Query1 {
+
+	public static void main(String[] args) {
+
+		
+	}
+
+}

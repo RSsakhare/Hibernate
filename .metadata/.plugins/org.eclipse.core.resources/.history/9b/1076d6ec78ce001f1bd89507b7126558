@@ -1,0 +1,45 @@
+package com.controller;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.hibernate.utility.HibernateUtil;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Date;
+
+public class MainApp {
+    public static void main(String[] args) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+
+        Director director1 = new Director();
+        director1.setDirectorId(1);
+        director1.setDirectorName("Steven Spielberg");
+
+        Director director2 = new Director();
+        director2.setDirectorId(2);
+        director2.setDirectorName("Christopher Nolan");
+
+        Set<Movie> movies1 = new HashSet<>();
+        movies1.add(new Movie("Jaws", new Date(), 7000000, director1));
+        movies1.add(new Movie("E.T.", new Date(), 10500000, director1));
+        movies1.add(new Movie("Jurassic Park", new Date(), 63000000, director1));
+        director1.setMovies(movies1);
+
+        Set<Movie> movies2 = new HashSet<>();
+        movies2.add(new Movie("Inception", new Date(), 160000000, director2));
+        movies2.add(new Movie("Interstellar", new Date(), 165000000, director2));
+        movies2.add(new Movie("Dunkirk", new Date(), 100000000, director2));
+        director2.setMovies(movies2);
+
+        session.save(director1);
+        session.save(director2);
+        tx.commit();
+        session.close();
+    }
+}
+
+
+

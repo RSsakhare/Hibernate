@@ -1,0 +1,34 @@
+package com.controller;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import com.hibernate.utility.HibernateUtil;
+import com.model.Director;
+import com.model.Movie;
+
+import java.util.Scanner;
+
+public class Query2 {
+    public static void main(String[] args) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter Director ID: ");
+        int directorId = scanner.nextInt();
+
+        Director director = session.get(Director.class, directorId);
+        if (director != null) {
+            System.out.println("Movies directed by " + director.getDirectorName() + ":");
+            for (Movie movie : director.getMovies()) {
+                System.out.println(movie.getMovieName());
+            }
+        } else {
+            System.out.println("Director not found.");
+        }
+
+        tx.commit();
+        session.close();
+        scanner.close();
+    }
+}

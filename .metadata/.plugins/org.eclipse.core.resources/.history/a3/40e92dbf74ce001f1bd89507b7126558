@@ -1,0 +1,36 @@
+package com.model;
+
+import javax.persistence.*;
+import java.util.Date;
+
+@Entity
+public class PassportDetails {
+    @Id
+    private int passportNo;
+    @Column(name = "firstName",length = 10)
+    private String firstName;
+    @Column(name = "lastName",length = 10)
+    private String lastName;
+    @Temporal(TemporalType.DATE)
+    private Date dob;
+    @Column(name = "gender",length = 7)
+    private String gender;
+    @Column(name = "nationality",length = 10)
+    private String nationality;
+    @Column(name = "countryCode",length = 5)
+    private String countryCode;
+    @Temporal(TemporalType.DATE)
+    private Date expiryDate;
+    @Temporal(TemporalType.DATE)
+    private Date issueDate;
+    @Column(name = "birthplace",length = 15)
+    private String birthplace;
+
+    @OneToOne
+    @JoinColumn(name = "custId")
+    private Customer cust;
+    
+    
+    // Getters and Setters
+}
+

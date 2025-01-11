@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.demo.Employee" table="emp107" discriminator-value="e">
+        <id name="emp_id" type="int" column="emp_id" >
+            <generator class="assigned"></generator>
+        </id>
+        <discriminator column="empType" type="string" length="5"></discriminator>
+        
+        <property name="ename" not-null="true" column="ename" length="15"></property>
+        <property name="esal" not-null="true" column="esal" length="15"></property>
+        
+        <subclass name="com.demo.PerEmp" discriminator-value="p">
+        	<property name="desig" column="desig" length="10"></property>
+        	<property name="dname" column="dname" length="10"></property>	
+        </subclass>
+        
+        <subclass name="com.demo.TempEmp" discriminator-value="t">
+        	<property name="workdays" column="workdays" length="10"></property>
+        	<property name="cname" column="cname" length="10"></property>	
+        </subclass>
+        
+    </class>
+</hibernate-mapping>
