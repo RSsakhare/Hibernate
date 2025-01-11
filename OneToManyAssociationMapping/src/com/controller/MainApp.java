@@ -1,0 +1,65 @@
+package com.controller;
+
+
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import com.hibernate.utility.HibernateUtil;
+import com.model.Department;
+import com.model.Employee;
+
+import java.util.Date;
+
+public class MainApp {
+   
+	@SuppressWarnings("deprecation")
+	public static void main(String[] args) {
+       
+        
+        // Open a new session
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        
+        // Create a Department
+        Department d1 = new Department();
+        d1.setDepartmentId(15);
+        d1.setDepartmentName("IT Department");
+        session.save(d1);
+        
+        Department d2 = new Department();
+        d2.setDepartmentId(10);
+        d2.setDepartmentName("Sales");
+        session.save(d2);
+        
+        
+        // Create Employees
+        Employee emp1 = new Employee(129,"John","Joy",new Date("12/04/1980"),"5221",null);
+        
+		Employee emp2 = new Employee(234,"Sam","Almy",new Date("10/09/1988"),"2346",null);
+        
+        emp1.setDepartment(d1);
+        emp2.setDepartment(d1);
+        
+        session.save(emp1);
+        session.save(emp2);
+        
+        Employee emp3 = new Employee(452,"John","Joy",new Date("12/04/1980"),"5221",null);
+        Employee emp4 = new Employee(632,"Sam","Almy",new Date("10/09/1988"),"2346",null);
+        
+        emp3.setDepartment(d2);
+        emp4.setDepartment(d2);
+        
+        session.save(emp3);
+        session.save(emp4);
+        
+        // Save Department (employees will be saved automatically)
+       
+        
+        // Commit transaction
+        transaction.commit();
+        session.close();
+        
+        
+        System.out.println("Department and employees saved successfully!");
+    }
+}
